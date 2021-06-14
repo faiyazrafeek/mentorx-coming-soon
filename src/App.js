@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useEffect, useRef } from 'react';
 import './App.css';
+import lottie from 'lottie-web';
 
 function App() {
+
+  const container = useRef(null);
+  useEffect(() => {
+    lottie.loadAnimation({
+      container: container.current,
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      animationData: require('./loading.json')
+    })
+    
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1 className="title">mentorX</h1>
+        <div className="container" ref={container}></div>
+        <h1 className="soon">Very Soon in your Hands</h1>
     </div>
   );
 }
